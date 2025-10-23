@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hien Bach - Marketing Director</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #333;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 400;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #FDB834;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #333;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            min-height: 100vh;
+            padding: 0 5%;
+            gap: 4rem;
+        }
+
+        .hero-content {
+            animation: fadeInLeft 1s ease;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .subtitle {
+            color: #FDB834;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+        }
+
+        .hero-description {
+            color: #999;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #FDB834;
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(253, 184, 52, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #f0a820;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(253, 184, 52, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #333;
+            border: 2px solid #333;
+        }
+
+        .btn-secondary:hover {
+            background: #333;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Image Section */
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInRight 1s ease;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .image-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+        }
+
+        .circle-bg {
+            width: 100%;
+            height: 100%;
+            background: #FDB834;
+            border-radius: 50%;
+            position: absolute;
+            animation: float 40s ease-in-out infinite;
+        }
+
+ 
+			   @keyframes float {
+		  0% {
+			transform: translate(0, 0);
+		  }
+		  12.5% {
+			transform: translate(10px, -25px);
+		  }
+		  25% {
+			transform: translate(-25px, 10px);
+		  }
+		  37.5% {
+			transform: translate(25px, -10px);
+		  }
+		  50% {
+			transform: translate(-10px, 25px);
+		  }
+		  62.5% {
+			transform: translate(10px, -20px);
+		  }
+		  75% {
+			transform: translate(-15px, -15px);
+		  }
+		  87.5% {
+			transform: translate(15px, 15px);
+		  }
+		  100% {
+			transform: translate(0, 0);
+		  }
+		}
+		
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+
+        .image-container:hover .profile-image {
+            filter: grayscale(0%);
+        }
+
+        /* Projects Section */
+        .projects-section {
+            padding: 2rem 5%;
+            background: #fafafa;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 1rem;
+        }
+
+        .project-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #FDB834;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .project-underline {
+            width: 60px;
+            height: 3px;
+            background: #FDB834;
+            margin: 0 auto;
+        }
+
+        
+		/* Testimonial Section */
+		.testimonial-section {
+			padding: 6rem 5%;
+			background: #fff;
+			text-align: center;
+		}
+
+		.testimonial-section h2 {
+			font-family: 'Playfair Display', serif;
+			font-size: 3rem;
+			margin-bottom: 1rem;
+			color: #1a1a1a;
+		}
+
+		.section-underline {
+			width: 80px;
+			height: 3px;
+			background: #FDB834;
+			margin: 0 auto 3rem;
+		}
+
+		.carousel-wrapper {
+			position: relative;
+			max-width: 1400px;
+			margin: 0 auto;
+			padding: 0 80px;
+		}
+
+		.testimonial-carousel {
+			overflow: hidden;
+			width: 100%;
+		}
+
+		.testimonial-track {
+			display: flex;
+			transition: transform 0.5s ease;
+		}
+
+		.testimonial-card {
+			min-width: calc(33.333% - 2rem);
+			margin: 0 1rem;
+			background: #fafafa;
+			padding: 2.5rem 2rem;
+			border-radius: 10px;
+			box-sizing: border-box;
+			transition: all 0.3s ease;
+		}
+
+		.testimonial-card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+		}
+
+		.quote-icon {
+			font-size: 3rem;
+			color: #FDB834;
+			opacity: 0.3;
+			margin-bottom: 1rem;
+			font-family: Georgia, serif;
+			line-height: 1;
+		}
+
+		.testimonial-text {
+			font-size: 1.1rem;
+			line-height: 1.7;
+			color: #333;
+			margin-bottom: 1.5rem;
+			font-style: italic;
+			min-height: 120px;
+		}
+
+		.testimonial-author {
+			font-weight: 500;
+			color: #1a1a1a;
+			font-size: 1rem;
+			margin-bottom: 0.3rem;
+		}
+
+		.testimonial-role {
+			color: #999;
+			font-size: 0.9rem;
+		}
+
+		.carousel-arrow {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			width: 50px;
+			height: 50px;
+			background: #333;
+			border: none;
+			border-radius: 50%;
+			color: #fff;
+			font-size: 1.5rem;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			z-index: 10;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.carousel-arrow:hover {
+			background: #FDB834;
+			transform: translateY(-50%) scale(1.1);
+		}
+
+		.carousel-arrow.prev {
+			left: 10px;
+		}
+
+		.carousel-arrow.next {
+			right: 10px;
+		}
+
+		.testimonial-dots {
+			display: flex;
+			justify-content: center;
+			gap: 0.8rem;
+			margin-top: 3rem;
+		}
+
+		.dot {
+			width: 12px;
+			height: 12px;
+			border-radius: 50%;
+			background: #ddd;
+			cursor: pointer;
+			transition: all 0.3s ease;
+		}
+
+		.dot:hover {
+			background: #FDB834;
+			transform: scale(1.2);
+		}
+
+		.dot.active {
+			background: #FDB834;
+			width: 30px;
+			border-radius: 6px;
+		}
+
+		@media (max-width: 1024px) {
+			.testimonial-card {
+				min-width: calc(50% - 2rem);
+			}
+		}
+
+		@media (max-width: 768px) {
+			.testimonial-section h2 {
+				font-size: 2rem;
+			}
+
+			.testimonial-card {
+				min-width: calc(100% - 2rem);
+			}
+
+			.carousel-wrapper {
+				padding: 0 60px;
+			}
+
+			.carousel-arrow {
+				width: 40px;
+				height: 40px;
+				font-size: 1.2rem;
+			}
+
+			.testimonial-text {
+				font-size: 1rem;
+				min-height: auto;
+			}
+		}
+		
+		/* Footer */
+        footer {
+            padding: 1rem 5%;
+            text-align: center;
+            background: #fff;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #333;
+            color: #fff;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+        }
+
+        .social-links a:hover {
+            background: #FDB834;
+            transform: translateY(-5px) rotate(360deg);
+        }
+
+        .copyright {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding-top: 100px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .image-container {
+                width: 350px;
+                height: 350px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">Hien Bach</div>
+        <ul class="nav-links">
+            <li><a href="#about">About me</a></li>
+            <li><a href="#projects">Portfolio</a></li>
+            <li><a href="#contact">Resume</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Hello, my name<br>is Hien Bach</h1>
+			<div class="subtitle">Marketing Director | Mentor | Leader</div>
+            <p class="hero-description">
+                Calm under pressure, naturally curious, and always eager to learn. I love helping ideas and people grow. I’m not the loudest voice in the room, but the one quietly connecting the dots. I connect data, strategy, and people to drive meaningful growth.
+            </p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">Download CV</a>
+                <a href="https://linkedin.com" class="btn btn-secondary">LinkedIn</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="image-container">
+                <div class="circle-bg"></div>
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&h=500&fit=crop" alt="Madelyn Torff" class="profile-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects-section" id="projects">
+        <div class="projects-grid">
+            <div class="project-card">
+                <h2>Portfolio</h2>
+                <div class="project-underline"></div>
+            </div>
+            <div class="project-card">
+                <h2>Resume</h2>
+                <div class="project-underline"></div>
+            </div>
+            <div class="project-card">
+                <h2>About me</h2>
+                <div class="project-underline"></div>
+            </div>
+        </div>
+    </section>
+	
+<!-- Testimonial Section -->
+<section class="testimonial-section">
+    <h2>Testimonials</h2>
+    <div class="section-underline"></div>
+    
+    <div class="carousel-wrapper">
+        <button class="carousel-arrow prev" aria-label="Previous testimonials">‹</button>
+        
+        <div class="testimonial-carousel">
+            <div class="testimonial-track">
+                <div class="testimonial-card">
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">
+                        Madelyn's design work transformed our entire user experience. Her attention to detail and creative solutions exceeded all expectations.
+                    </p>
+                    <div class="testimonial-author">Sarah Johnson</div>
+                    <div class="testimonial-role">CEO, TechStart Inc.</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">
+                        Working with Madelyn was an absolute pleasure. She brought fresh perspectives to our project and helped us achieve a 40% increase in user engagement.
+                    </p>
+                    <div class="testimonial-author">Michael Chen</div>
+                    <div class="testimonial-role">Product Manager, InnovateLab</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">
+                        Madelyn has an incredible ability to understand user needs and translate them into beautiful, functional designs that users love.
+                    </p>
+                    <div class="testimonial-author">Emily Rodriguez</div>
+                    <div class="testimonial-role">Marketing Director, GrowthCo</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">
+                        The level of professionalism and creativity Madelyn brings to every project is outstanding. She's a true strategic partner.
+                    </p>
+                    <div class="testimonial-author">David Park</div>
+                    <div class="testimonial-role">Founder, StartupHub</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">
+                        Madelyn's designs are both aesthetically stunning and highly functional. She has a rare talent for balancing beauty with usability.
+                    </p>
+                    <div class="testimonial-author">Jessica Williams</div>
+                    <div class="testimonial-role">Creative Director, DesignStudio</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">
+                        Her innovative approach to problem-solving and dedication to creating seamless user experiences sets her apart from other designers.
+                    </p>
+                    <div class="testimonial-author">Robert Martinez</div>
+                    <div class="testimonial-role">CTO, DevSolutions</div>
+                </div>
+            </div>
+        </div>
+
+        <button class="carousel-arrow next" aria-label="Next testimonials">›</button>
+    </div>
+
+    <div class="testimonial-dots">
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
+        <span class="dot" data-index="3"></span>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <p class="copyright">Copyright Hien Bach 2025</p>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Project cards interaction
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', () => {
+                // Add your project navigation logic here
+                console.log('Project card clicked');
+            });
+        });
+    </script>
+</body>
+</html>
